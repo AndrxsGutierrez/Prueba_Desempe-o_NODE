@@ -1,5 +1,6 @@
 import Role from "../models/role.model";
 
+/** Provides role lookups used during registration and authorization. */
 class RoleRepository {
 
   async findByName(name: string): Promise<Role | null> {

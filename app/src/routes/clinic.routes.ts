@@ -7,6 +7,7 @@ import { authenticateToken } from "../middlewares/auth.middleware";
 import { authorizeRoles } from "../middlewares/role.middleware";
 import { validateBody, validateParams } from "../middlewares/validate-body.middleware";
 
+/** ADMIN-only routes for clinic management. */
 const router = Router();
 
 router.use(authenticateToken, authorizeRoles("ADMIN"));

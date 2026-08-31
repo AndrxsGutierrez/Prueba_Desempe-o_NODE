@@ -1,4 +1,5 @@
 
+/** Sequelize CLI configuration for the development database. */
 module.exports = {
   development: {
     username: process.env.POSTGRES_USER,

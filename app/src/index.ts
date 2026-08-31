@@ -6,6 +6,7 @@ import "./models/clinic.model";
 
 const port = Number(process.env.APP_PORT) || 3000;
 
+/** Connects to the database before accepting HTTP requests. */
 async function startServer() {
   try {
     await sequelize.authenticate();

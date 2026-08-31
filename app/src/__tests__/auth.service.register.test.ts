@@ -1,4 +1,6 @@
 /// <reference types="jest" />
+
+/** Covers the authentication service registration flow. */
 import AppError from "../error/appError";
 import roleRepository from "../repositories/role.repository";
 import userRepository from "../repositories/user.repository";

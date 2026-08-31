@@ -1,3 +1,4 @@
+/** Public clinic shape returned by the API. */
 export interface ClinicResponseDto {
   id: number;
   name: string;

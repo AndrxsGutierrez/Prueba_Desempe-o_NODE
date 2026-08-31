@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 
+/** Shared test data and helpers for authentication tests. */
 export const mockJwtSecret = "test-secret";
 
 export const createMockToken = (payload: any): string => {

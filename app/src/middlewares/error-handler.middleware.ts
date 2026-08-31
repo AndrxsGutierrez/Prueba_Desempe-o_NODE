@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import AppError from "../error/appError";
 
+/** Sends a consistent JSON response for expected and unexpected errors. */
 export function errorHandler(
   error: unknown,
   _req: Request,

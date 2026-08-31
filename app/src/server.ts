@@ -5,8 +5,12 @@ import { swaggerSpec } from "./docs/swagger";
 import userRoutes from "./routes/user.routes"
 import authRoutes from "./routes/auth.routes"
 import clinicRoutes from "./routes/clinic.routes";
+import inventoryRoutes from "./routes/inventory.routes";
+import medicationRoutes from "./routes/medication.routes";
+import warehouseRoutes from "./routes/warehouse.routes";
 import { errorHandler } from "./middlewares/error-handler.middleware";
 
+/** Configures the Express application and its public routes. */
 export const app = express();
 
 app.use(cors());
@@ -21,6 +25,9 @@ app.get("/health", (_req, res) => {
 app.use("/api/users", userRoutes)
 app.use("/api/auth", authRoutes)
 app.use("/api/clinics", clinicRoutes);
+app.use("/api/warehouses", warehouseRoutes);
+app.use("/api/medications", medicationRoutes);
+app.use("/api/inventories", inventoryRoutes);
 
 // Swagger
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec))

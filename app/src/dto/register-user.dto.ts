@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+/** Validates the data required to create a user account. */
 export const createUserSchema = z.object({
   firstName: z
     .string()

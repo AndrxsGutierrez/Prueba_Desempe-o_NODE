@@ -1,5 +1,6 @@
 import User, { UserCreationAttributes } from "../models/user.model";
 
+/** Contains only the database operations needed for users. */
 class UserRepository {
   async findByEmail(email: string): Promise<User | null> {
     return User.findOne({

@@ -1,4 +1,6 @@
 /// <reference types="jest" />
+
+/** Covers successful and rejected JWT authentication scenarios. */
 import { NextFunction, Response } from "express";
 import jwt from "jsonwebtoken";
 import AppError from "../error/appError";

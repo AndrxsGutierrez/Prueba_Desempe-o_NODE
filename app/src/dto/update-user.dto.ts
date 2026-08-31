@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+/** Validates the fields a user can change on an account. */
 export const updateUserSchema = z.object({
   firstName: z.string().trim().min(2, "El nombre debe tener al menos 2 caracteres").max(100).optional(),
   lastName: z.string().trim().min(2, "El apellido debe tener al menos 2 caracteres").max(100).optional(),

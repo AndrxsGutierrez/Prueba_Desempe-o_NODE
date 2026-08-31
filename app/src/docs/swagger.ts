@@ -1,4 +1,4 @@
-// app/src/docs/swagger.ts
+/** Builds the OpenAPI specification consumed by Swagger UI. */
 
 /**
  * Swagger Configuration
