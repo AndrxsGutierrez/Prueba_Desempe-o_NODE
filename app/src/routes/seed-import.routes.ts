@@ -38,6 +38,8 @@ const router = Router();
  */
 router.post(
   "/seed",
+  authenticateToken,
+  authorizeRoles("ADMIN"),
   uploadJson.single("file"),
   seedImportController.importSeed
 );

@@ -1,39 +1,39 @@
 # RiwiMediCare Plus API
 
-API REST para gestionar clínicas, almacenes, medicamentos, inventario y solicitudes de abastecimiento. Incluye autenticación JWT, control de acceso por roles, documentación Swagger, carga de datos JSON con Multer y seeders de prueba.
+A REST API for managing clinics, warehouses, medications, inventory, and supply requests. It includes JWT authentication, role-based access control, Swagger documentation, JSON data import with Multer, and test seeders.
 
-## Información del coder
+## Coder Information
 
-- **Nombre:** Andrés Gutiérrez
-- **Clan:** Cohorte 5
-- **Repositorio público:** [Prueba_Desempe-o_NODE](https://github.com/AndrxsGutierrez/Prueba_Desempe-o_NODE)
+- **Name:** Andrés Gutiérrez
+- **Clan:** Cohort 5
+- **Public Repository:** [Prueba_Desempe-o_NODE](https://github.com/AndrxsGutierrez/Prueba_Desempe-o_NODE)
 
-## Tecnologías utilizadas
+## Technologies Used
 
 - Node.js
 - TypeScript
 - Express 5
 - PostgreSQL 15
-- Sequelize y Sequelize CLI
+- Sequelize and Sequelize CLI
 - JSON Web Token (JWT)
 - bcrypt
 - Zod
 - Multer
 - Swagger / OpenAPI
 - Jest
-- Docker y Docker Compose
+- Docker and Docker Compose
 
-## Funcionalidades principales
+## Main Features
 
-- Registro, inicio de sesión y autenticación con JWT.
-- Roles `ADMIN` y `USER`.
-- CRUD con eliminación lógica para usuarios, clínicas, almacenes, medicamentos e inventario.
-- Gestión de solicitudes de abastecimiento y su historial por clínica.
-- Validación de inventario disponible al crear y aprobar solicitudes.
-- Documentación interactiva en Swagger.
-- Importación de clínicas, almacenes, medicamentos e inventario desde un archivo JSON mediante Multer.
+- User registration, login, and JWT authentication.
+- `ADMIN` and `USER` roles.
+- CRUD operations with logical deletion for users, clinics, warehouses, medications, and inventory.
+- Supply request management and request history by clinic.
+- Available inventory validation when creating and approving requests.
+- Interactive Swagger documentation.
+- Clinic, warehouse, medication, and inventory import from a JSON file using Multer.
 
-## Estructura del proyecto
+## Project Structure
 
 ```text
 .
@@ -52,15 +52,14 @@ API REST para gestionar clínicas, almacenes, medicamentos, inventario y solicit
 └── docker-compose.yml
 ```
 
-## Requisitos previos
+## Prerequisites
 
-- Node.js 20 o superior.
-- npm.
-- Docker y Docker Compose.
+- Docker
+- Docker Compose
 
-## Variables de entorno
+## Environment Variables
 
-Crea un archivo `.env` en la raíz del proyecto con una configuración similar a esta:
+Create a `.env` file in the project root using the following example:
 
 ```env
 NODE_ENV=development
@@ -77,83 +76,69 @@ POSTGRES_PORT=5432
 JWT_SECRET=replace_with_a_long_secure_secret
 ```
 
-> Cuando ejecutes la aplicación fuera de Docker, usa `POSTGRES_HOST=localhost`.
+> Keep `POSTGRES_PORT=5432`. This value is used by the API to connect to the database service inside Docker Compose.
 
-## Instalación y ejecución con Docker
+## Installation and Execution with Docker
 
-Desde la raíz del proyecto:
+From the project root, run:
 
 ```bash
 docker compose up -d --build
 ```
 
-Para comprobar los contenedores:
+To check the containers:
 
 ```bash
 docker compose ps
 ```
 
-Para consultar los logs de la API:
+To view API logs:
 
 ```bash
 docker compose logs -f app
 ```
 
-La API estará disponible en:
+The API will be available at:
 
 ```text
 http://localhost:3000
 ```
 
-## Instalación y ejecución local
+Docker installs Node.js and project dependencies inside the container, so Node.js and npm do not need to be installed on your machine.
 
-Instala las dependencias dentro de `app`:
-
-```bash
-cd app
-npm ci
-```
-
-Inicia la aplicación en modo desarrollo:
+To build or run tests with Docker:
 
 ```bash
-npm run dev
+docker compose exec -T app npm run build
+docker compose exec -T app npm test
 ```
 
-Otros comandos disponibles:
+## API Documentation
 
-```bash
-npm run build
-npm start
-npm test
-```
-
-## Documentación API
-
-Con la aplicación en ejecución, abre:
+With the application running, open:
 
 ```text
 http://localhost:3000/api/docs/
 ```
 
-El endpoint de salud es:
+Health check endpoint:
 
 ```text
 GET /health
 ```
 
-## Usuarios de prueba
+## Test Users
 
-Después de ejecutar los seeders de roles y usuarios, puedes iniciar sesión con:
+After running the role and user seeders, you can log in with:
 
 ```text
 Email: admin@example.com
 Password: Admin123*
 ```
 
-## Ejecutar seeders de prueba
+## Running Test Seeders
 
-Primero levanta la aplicación al menos una vez para que Sequelize cree las tablas. Luego, desde la raíz del proyecto, ejecuta los seeders dentro del contenedor:
+Start the application at least once so Sequelize can create the tables. Then, from the project root, run the seeders inside the container:
 
 ```bash
 docker compose exec -T app npx sequelize-cli db:seed --seed 20260829233711-default-roles.js
@@ -163,31 +148,31 @@ docker compose exec -T app npx sequelize-cli db:seed --seed 20260831150000-defau
 docker compose exec -T app npx sequelize-cli db:seed --seed 20260831170000-default-supply-requests.js
 ```
 
-## Carga de datos JSON con Multer
+## JSON Data Import with Multer
 
-El endpoint requerido para importar datos es:
+The required data import endpoint is:
 
 ```text
 POST /api/import/seed
 ```
 
-Requisitos:
+Requirements:
 
-- Requiere un JWT de usuario con rol `ADMIN`.
-- Debe enviarse como `multipart/form-data`.
-- El campo del archivo debe llamarse `file`.
-- El archivo debe tener extensión `.json`.
+- Requires a JWT from an `ADMIN` user.
+- The request must use `multipart/form-data`.
+- The file field must be named `file`.
+- The uploaded file must use the `.json` extension.
 
-Puedes usar [seed-data.example.json](app/seed-data.example.json) como archivo de prueba. Este contiene clínicas, almacenes, medicamentos e inventario con datos distintos a los seeders convencionales.
+You can use [seed-data.example.json](app/seed-data.example.json) as a test file. It contains clinics, warehouses, medications, and inventory data different from the conventional seeders.
 
-También puedes realizar la carga desde Swagger:
+You can also import the data from Swagger:
 
-1. Inicia sesión con el administrador.
-2. Copia el token JWT recibido.
-3. Abre `/api/docs/` y selecciona **Authorize**.
-4. Ingresa `Bearer <tu_token>`.
-5. Ejecuta `POST /api/import/seed` y adjunta el archivo JSON en el campo `file`.
+1. Log in as an administrator.
+2. Copy the returned JWT token.
+3. Open `/api/docs/` and select **Authorize**.
+4. Enter `Bearer <your_token>`.
+5. Execute `POST /api/import/seed` and attach the JSON file in the `file` field.
 
-## Backup de base de datos
+## Database Backup
 
-El archivo `backup-postgresql.sql` contiene un respaldo de PostgreSQL para la entrega final. Como los archivos `.sql` están ignorados por Git, debe incluirse manualmente en el archivo `.zip` que se entrega en Moodle.
+The `backup-postgresql.sql` file contains a PostgreSQL backup for the final delivery. Since `.sql` files are ignored by Git, include it manually in the `.zip` file submitted to Moodle.
