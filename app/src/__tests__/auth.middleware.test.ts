@@ -5,7 +5,10 @@ import { NextFunction, Response } from "express";
 import jwt from "jsonwebtoken";
 import AppError from "../error/appError";
 import { authenticateToken, AuthRequest } from "../middlewares/auth.middleware";
-import { createMockToken } from "./setup";
+import userRepository from "../repositories/user.repository";
+import { createMockToken, mockUser } from "./setup";
+
+jest.mock("../repositories/user.repository");
 
 describe("AuthMiddleware - authenticateToken", () => {
   let mockReq: Partial<AuthRequest>;
@@ -19,27 +22,28 @@ describe("AuthMiddleware - authenticateToken", () => {
     mockRes = {};
     mockNext = jest.fn();
     process.env.JWT_SECRET = "test-secret";
+    (userRepository.findById as jest.Mock).mockResolvedValue(mockUser);
   });
 
-  it("should validate token and call next()", () => {
+  it("should validate token and call next()", async () => {
     const token = createMockToken({ userId: 1, roleId: 1 });
     mockReq.headers = {
       authorization: `Bearer ${token}`,
     };
 
-    authenticateToken(mockReq as AuthRequest, mockRes as Response, mockNext);
+    await authenticateToken(mockReq as AuthRequest, mockRes as Response, mockNext);
 
     expect(mockNext).toHaveBeenCalled();
     expect(mockReq.user).toBeDefined();
     expect(mockReq.user?.userId).toBe(1);
   });
 
-  it("should throw error if Bearer token is missing", () => {
+  it("should throw error if Bearer token is missing", async () => {
     mockReq.headers = {
       authorization: undefined,
     };
 
-    authenticateToken(mockReq as AuthRequest, mockRes as Response, mockNext);
+    await authenticateToken(mockReq as AuthRequest, mockRes as Response, mockNext);
 
     expect(mockNext).toHaveBeenCalled();
     const error = (mockNext as jest.Mock).mock.calls[0][0];
@@ -47,12 +51,12 @@ describe("AuthMiddleware - authenticateToken", () => {
     expect(error.status).toBe(401);
   });
 
-  it("should throw error if authorization header doesn't start with Bearer", () => {
+  it("should throw error if authorization header doesn't start with Bearer", async () => {
     mockReq.headers = {
       authorization: "Basic xyz123",
     };
 
-    authenticateToken(mockReq as AuthRequest, mockRes as Response, mockNext);
+    await authenticateToken(mockReq as AuthRequest, mockRes as Response, mockNext);
 
     expect(mockNext).toHaveBeenCalled();
     const error = (mockNext as jest.Mock).mock.calls[0][0];
@@ -60,12 +64,12 @@ describe("AuthMiddleware - authenticateToken", () => {
     expect(error.status).toBe(401);
   });
 
-  it("should throw error if token is invalid", () => {
+  it("should throw error if token is invalid", async () => {
     mockReq.headers = {
       authorization: "Bearer invalid.token.here",
     };
 
-    authenticateToken(mockReq as AuthRequest, mockRes as Response, mockNext);
+    await authenticateToken(mockReq as AuthRequest, mockRes as Response, mockNext);
 
     expect(mockNext).toHaveBeenCalled();
     const error = (mockNext as jest.Mock).mock.calls[0][0];
@@ -73,14 +77,14 @@ describe("AuthMiddleware - authenticateToken", () => {
     expect(error.status).toBe(401);
   });
 
-  it("should throw error if JWT_SECRET is not configured", () => {
+  it("should throw error if JWT_SECRET is not configured", async () => {
     delete process.env.JWT_SECRET;
     const token = jwt.sign({ userId: 1, roleId: 1 }, "some-secret");
     mockReq.headers = {
       authorization: `Bearer ${token}`,
     };
 
-    authenticateToken(mockReq as AuthRequest, mockRes as Response, mockNext);
+    await authenticateToken(mockReq as AuthRequest, mockRes as Response, mockNext);
 
     expect(mockNext).toHaveBeenCalled();
     const error = (mockNext as jest.Mock).mock.calls[0][0];

@@ -37,7 +37,7 @@ class AuthService {
 
   async login(data: LoginUserDto) {
     
-    const user = await userRepository.findByEmail(data.email);
+    const user = await userRepository.findActiveByEmail(data.email);
 
     if (!user) {
       throw new AppError(401, "Correo o contraseña incorrectos");

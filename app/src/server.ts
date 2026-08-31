@@ -7,6 +7,8 @@ import authRoutes from "./routes/auth.routes"
 import clinicRoutes from "./routes/clinic.routes";
 import inventoryRoutes from "./routes/inventory.routes";
 import medicationRoutes from "./routes/medication.routes";
+import seedImportRoutes from "./routes/seed-import.routes";
+import supplyRequestRoutes from "./routes/supply-request.routes";
 import warehouseRoutes from "./routes/warehouse.routes";
 import { errorHandler } from "./middlewares/error-handler.middleware";
 
@@ -28,6 +30,8 @@ app.use("/api/clinics", clinicRoutes);
 app.use("/api/warehouses", warehouseRoutes);
 app.use("/api/medications", medicationRoutes);
 app.use("/api/inventories", inventoryRoutes);
+app.use("/api/supply-requests", supplyRequestRoutes);
+app.use("/api/import", seedImportRoutes);
 
 // Swagger
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec))

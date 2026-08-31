@@ -10,10 +10,11 @@ export interface UserAttributes {
   email: string;
   password: string;
   roleId: number;
+  isActive: boolean;
 }
 
 export interface UserCreationAttributes
-extends Optional<UserAttributes, "id"> {}
+extends Optional<UserAttributes, "id" | "isActive"> {}
 
 class User 
 extends Model<UserAttributes, UserCreationAttributes>
@@ -25,6 +26,7 @@ implements UserAttributes {
   public email!: string;
   public password!: string;
   public roleId!: number;
+  public isActive!: boolean;
 
   /**
    * validPassword password: string  
@@ -69,6 +71,12 @@ User.init(
         model: "roles",
         key: "id"
       },
+    },
+    isActive: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+      field: "is_active"
     },
   },
   {

@@ -8,12 +8,28 @@ class UserRepository {
     });
   }
 
+  async findActiveByEmail(email: string): Promise<User | null> {
+    return User.findOne({
+      where: {
+        email,
+        isActive: true
+      }
+    });
+  }
+
   async findById(id: number): Promise<User | null> {
-    return User.findByPk(id);
+    return User.findOne({
+      where: {
+        id,
+        isActive: true
+      }
+    });
   }
 
   async findAll(): Promise<User[]> {
-    return User.findAll()
+    return User.findAll({
+      where: { isActive: true }
+    });
   }
 
   async create(data: UserCreationAttributes): Promise<User> {
@@ -24,8 +40,8 @@ class UserRepository {
     return user.update(data);
   }
 
-  async delete(user: User): Promise<void> {
-    await user.destroy();
+  async deactivate(user: User): Promise<User> {
+    return user.update({ isActive: false });
   }
 
 }
