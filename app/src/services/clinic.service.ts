@@ -5,6 +5,7 @@ import AppError from "../error/appError";
 import type { ClinicCreationAttributes } from "../models/clinic.model";
 import clinicRepository from "../repositories/clinic.repository";
 
+/** Applies clinic business rules before changing persistent data. */
 class ClinicService {
   async getAll(): Promise<ClinicResponseDto[]> {
     const clinics = await clinicRepository.findAll();

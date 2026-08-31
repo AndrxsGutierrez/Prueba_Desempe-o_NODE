@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import clinicService from "../services/clinic.service";
 
+/** Translates clinic service results into HTTP responses. */
 class ClinicController {
   async getClinics(_req: Request, res: Response): Promise<Response> {
     const clinics = await clinicService.getAll();

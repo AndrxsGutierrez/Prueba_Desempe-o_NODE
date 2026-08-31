@@ -1,5 +1,6 @@
 "use strict";
 
+/** Inserts local accounts that simplify manual API testing. */
 const DEFAULT_EMAILS = [
   "admin@example.com",
   "usuario1@example.com",

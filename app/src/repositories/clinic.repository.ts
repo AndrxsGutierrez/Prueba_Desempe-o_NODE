@@ -1,5 +1,6 @@
 import Clinic, { ClinicCreationAttributes } from "../models/clinic.model";
 
+/** Contains only the database operations needed for clinics. */
 class ClinicRepository {
   async findById(id: number): Promise<Clinic | null> {
     return Clinic.findOne({

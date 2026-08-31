@@ -7,6 +7,7 @@ import { authenticateToken } from "../middlewares/auth.middleware";
 import { authorizeUserMutation } from "../middlewares/user-access.middleware";
 import { validateBody, validateParams } from "../middlewares/validate-body.middleware";
 
+/** Routes for profiles and role-protected user administration. */
 const router = Router();
 
 

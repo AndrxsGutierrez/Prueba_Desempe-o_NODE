@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { ZodType } from "zod";
 
+/** Validates a request body using its Zod schema. */
 export function validateBody(schema: ZodType) {
   return (req: Request, res: Response, next: NextFunction) => {
     const result = schema.safeParse(req.body);
@@ -20,6 +21,7 @@ export function validateBody(schema: ZodType) {
   };
 }
 
+/** Validates route parameters using their Zod schema. */
 export function validateParams(schema: ZodType) {
   return (req: Request, res: Response, next: NextFunction) => {
     const result = schema.safeParse(req.params);

@@ -5,7 +5,7 @@ import userRepository from "../repositories/user.repository";
 import jwt from "jsonwebtoken";
 import { LoginUserDto } from "../dto/login-user.dto";
 
-
+/** Holds the authentication rules independently from HTTP concerns. */
 class AuthService {
 
   async register(data: CreateUserDto) {

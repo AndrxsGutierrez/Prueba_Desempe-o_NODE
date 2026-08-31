@@ -1,5 +1,6 @@
 "use strict";
 
+/** Inserts the default authorization roles required by the API. */
 module.exports = {
   async up(queryInterface) {
     await queryInterface.bulkInsert("roles", [

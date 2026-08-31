@@ -4,6 +4,7 @@ import AppError from "../error/appError";
 import type { UserCreationAttributes } from "../models/user.model";
 import userRepository from "../repositories/user.repository";
 
+/** Applies user account rules and maps models to public responses. */
 class UserService {
   async getAll(): Promise<UserResponseDto[]> {
     const users = await userRepository.findAll();

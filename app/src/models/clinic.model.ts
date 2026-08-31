@@ -1,6 +1,7 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import sequelize from "../config/database";
 
+/** Persistent attributes that describe a clinic and its contact person. */
 export interface ClinicAttributes {
   id: number;
   name: string;

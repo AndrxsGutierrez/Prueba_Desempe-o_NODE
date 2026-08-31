@@ -1,4 +1,4 @@
-// /app/src/config/database.ts
+/** PostgreSQL connection shared by Sequelize models. */
 
 /**
  * Configuración de Sequelize para PostgreSQL

@@ -1,6 +1,7 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import sequelize from "../config/database";
 
+/** Persistent role data used by the authorization layer. */
 export interface RoleAttributes {
   id: number;
   name: string;
@@ -40,7 +41,6 @@ Role.init(
 )
 
 export default Role;
-
 
 
 

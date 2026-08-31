@@ -2,6 +2,7 @@ import { NextFunction, Response } from "express";
 import AppError from "../error/appError";
 import { AuthRequest } from "./auth.middleware";
 
+/** Allows access only when the JWT role belongs to the permitted roles. */
 export function authorizeRoles(...allowedRoles: string[]) {
   return (
     req: AuthRequest,

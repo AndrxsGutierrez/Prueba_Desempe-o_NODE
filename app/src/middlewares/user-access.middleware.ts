@@ -4,6 +4,7 @@ import roleRepository from "../repositories/role.repository";
 import userRepository from "../repositories/user.repository";
 import { AuthRequest } from "./auth.middleware";
 
+/** Role allowed to manage accounts other than its own. */
 const ADMIN_ROLE = "ADMIN";
 
 function getAuthenticatedUserId(req: AuthRequest): number {
@@ -20,6 +21,7 @@ function isAdmin(req: AuthRequest): boolean {
   return req.user?.role === ADMIN_ROLE;
 }
 
+/** Protects account updates and deletions according to ownership and role. */
 export async function authorizeUserMutation(
   req: AuthRequest,
   _res: Response,

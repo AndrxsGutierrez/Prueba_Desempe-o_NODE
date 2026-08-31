@@ -2,10 +2,12 @@ import { NextFunction, Request, Response } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import AppError from "../error/appError";
 
+/** Extends Express requests with the verified JWT payload. */
 export interface AuthRequest extends Request {
   user?: JwtPayload;
 }
 
+/** Requires a valid Bearer token before continuing to a protected route. */
 export function authenticateToken(
   req: AuthRequest,
   _res: Response,

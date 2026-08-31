@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { AuthRequest } from "../middlewares/auth.middleware";
 import userService from "../services/user.service";
 
+/** Handles user profile and account management responses. */
 class UserController {
   async getUsers(_req: Request, res: Response): Promise<Response> {
     const users = await userService.getAll();

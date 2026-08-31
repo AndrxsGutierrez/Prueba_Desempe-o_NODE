@@ -4,6 +4,7 @@ import { createUserSchema } from "../dto/register-user.dto";
 import { validateBody } from "../middlewares/validate-body.middleware";
 import { loginUserSchema } from "../dto/login-user.dto";
 
+/** Authentication endpoints available to API clients. */
 const router = Router();
 
 /**

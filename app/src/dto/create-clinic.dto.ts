@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+/** Validates the data required to register a clinic. */
 export const createClinicSchema = z.object({
   name: z.string().trim().min(2, "El nombre debe tener al menos 2 caracteres").max(150),
   nit: z.string().trim().min(5, "El NIT debe tener al menos 5 caracteres").max(30),
