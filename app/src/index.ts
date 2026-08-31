@@ -2,6 +2,7 @@ import "dotenv/config";
 import { app } from "./server";
 import sequelize from "./config/database";
 import "./models/associations"
+import "./models/clinic.model";
 
 const port = Number(process.env.APP_PORT) || 3000;
 
@@ -25,4 +26,3 @@ async function startServer() {
 }
 
 startServer()
-
