@@ -4,6 +4,7 @@ import swaggerUi from "swagger-ui-express";
 import { swaggerSpec } from "./docs/swagger";
 import userRoutes from "./routes/user.routes"
 import authRoutes from "./routes/auth.routes"
+import clinicRoutes from "./routes/clinic.routes";
 import { errorHandler } from "./middlewares/error-handler.middleware";
 
 export const app = express();
@@ -19,6 +20,7 @@ app.get("/health", (_req, res) => {
 
 app.use("/api/users", userRoutes)
 app.use("/api/auth", authRoutes)
+app.use("/api/clinics", clinicRoutes);
 
 // Swagger
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec))
