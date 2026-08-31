@@ -28,7 +28,7 @@ describe("AuthService - login", () => {
       validPassword: jest.fn().mockResolvedValue(true),
     };
 
-    (userRepository.findByEmail as jest.Mock).mockResolvedValue(
+    (userRepository.findActiveByEmail as jest.Mock).mockResolvedValue(
       mockUserWithMethod,
     );
 
@@ -48,7 +48,7 @@ describe("AuthService - login", () => {
       password: "password123",
     };
 
-    (userRepository.findByEmail as jest.Mock).mockResolvedValue(null);
+    (userRepository.findActiveByEmail as jest.Mock).mockResolvedValue(null);
 
     await expect(authService.login(loginData)).rejects.toThrow(
       new AppError(401, "Correo o contraseña incorrectos"),
@@ -66,7 +66,7 @@ describe("AuthService - login", () => {
       validPassword: jest.fn().mockResolvedValue(false),
     };
 
-    (userRepository.findByEmail as jest.Mock).mockResolvedValue(
+    (userRepository.findActiveByEmail as jest.Mock).mockResolvedValue(
       mockUserWithMethod,
     );
 
@@ -88,7 +88,7 @@ describe("AuthService - login", () => {
       validPassword: jest.fn().mockResolvedValue(true),
     };
 
-    (userRepository.findByEmail as jest.Mock).mockResolvedValue(
+    (userRepository.findActiveByEmail as jest.Mock).mockResolvedValue(
       mockUserWithMethod,
     );
 

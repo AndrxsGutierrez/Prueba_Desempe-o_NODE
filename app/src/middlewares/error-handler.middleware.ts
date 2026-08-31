@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import multer from "multer";
 import AppError from "../error/appError";
 
 /** Sends a consistent JSON response for expected and unexpected errors. */
@@ -10,6 +11,10 @@ export function errorHandler(
 ): Response {
   if (error instanceof AppError) {
     return res.status(error.status).json({ message: error.message });
+  }
+
+  if (error instanceof multer.MulterError) {
+    return res.status(400).json({ message: "No fue posible procesar el archivo adjunto" });
   }
 
   console.error(error);

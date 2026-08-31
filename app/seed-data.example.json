@@ -1,0 +1,92 @@
+{
+  "clinics": [
+    {
+      "name": "San Gabriel Clinic",
+      "nit": "901111111-2",
+      "address": "Avenida 30 # 45-18",
+      "phone": "+57 310 111 2233",
+      "responsibleName": "Laura Martínez",
+      "responsibleEmail": "laura.martinez@sangabriel.com"
+    },
+    {
+      "name": "Nueva Esperanza Medical Center",
+      "nit": "901222222-3",
+      "address": "Calle 72 # 12-40",
+      "phone": "+57 311 222 3344",
+      "responsibleName": "Diego Ramírez",
+      "responsibleEmail": "diego.ramirez@nuevaesperanza.com"
+    },
+    {
+      "name": "Los Andes Health Center",
+      "nit": "901333333-4",
+      "address": "Carrera 18 # 60-25",
+      "phone": "+57 312 333 4455",
+      "responsibleName": "Sofía Torres",
+      "responsibleEmail": "sofia.torres@losandeshealth.com"
+    }
+  ],
+  "warehouses": [
+    {
+      "name": "South Distribution Warehouse",
+      "address": "Zona Industrial Sur, Bodega 12"
+    },
+    {
+      "name": "West Medical Warehouse",
+      "address": "Autopista Occidental # 90-30"
+    },
+    {
+      "name": "Emergency Supply Warehouse",
+      "address": "Calle 100 # 15-80"
+    }
+  ],
+  "medications": [
+    {
+      "name": "Ibuprofen 400 mg",
+      "description": "Nonsteroidal anti-inflammatory medication"
+    },
+    {
+      "name": "Loratadine 10 mg",
+      "description": "Antihistamine medication for allergy symptoms"
+    },
+    {
+      "name": "Metformin 850 mg",
+      "description": "Oral medication used to manage type 2 diabetes"
+    },
+    {
+      "name": "Salbutamol Inhaler",
+      "description": "Bronchodilator inhaler for respiratory emergencies"
+    }
+  ],
+  "inventory": [
+    {
+      "warehouseName": "South Distribution Warehouse",
+      "medicationName": "Ibuprofen 400 mg",
+      "quantity": 320
+    },
+    {
+      "warehouseName": "South Distribution Warehouse",
+      "medicationName": "Metformin 850 mg",
+      "quantity": 180
+    },
+    {
+      "warehouseName": "West Medical Warehouse",
+      "medicationName": "Loratadine 10 mg",
+      "quantity": 250
+    },
+    {
+      "warehouseName": "West Medical Warehouse",
+      "medicationName": "Salbutamol Inhaler",
+      "quantity": 75
+    },
+    {
+      "warehouseName": "Emergency Supply Warehouse",
+      "medicationName": "Ibuprofen 400 mg",
+      "quantity": 500
+    },
+    {
+      "warehouseName": "Emergency Supply Warehouse",
+      "medicationName": "Salbutamol Inhaler",
+      "quantity": 120
+    }
+  ]
+}

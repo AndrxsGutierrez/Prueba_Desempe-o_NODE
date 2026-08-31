@@ -47,7 +47,7 @@ class UserService {
 
   async delete(id: number): Promise<void> {
     const user = await this.getUserOrFail(id);
-    await userRepository.delete(user);
+    await userRepository.deactivate(user);
   }
 
   private async getUserOrFail(id: number) {
